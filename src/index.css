@@ -1,0 +1,95 @@
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/fonts/Roboto-Regular.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+
+body {
+  min-height: 100vh;
+  background: url(./assets/images/bg-desktop-light.jpg) no-repeat;
+  background-size: contain;
+  background-position: top left;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container header .title {
+  color: white;
+  letter-spacing: 0.7rem;
+}
+
+.container header button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+  transition: all 0.3s;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container header button:hover {
+  background: #cccccc34;
+}
+
+.container header button:active {
+  background: transparent;
+}
+
+.container header button img {
+  height: 20px;
+  width: 20px;
+}
+
+/* input area */
+
+.container .inputs {
+  display: flex;
+  gap: 14px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 4px;
+  margin-top: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  align-items: center;
+}
+
+.container .inputs .check-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.container .inputs input {
+  flex: 1;
+  font-size: 17px;
+  padding: 5px;
+  outline: none;
+  border: none;
+}
