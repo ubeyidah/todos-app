@@ -62,9 +62,7 @@ export default function App() {
 
   // clear completed todos
   const clearCompleted = () => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) => ({ ...todo, isCompleted: false }))
-    );
+    setTodos((prevTodos) => prevTodos.filter((todo) => !todo.isCompleted));
   };
   // filter data
   const handleClick = (e) => {
