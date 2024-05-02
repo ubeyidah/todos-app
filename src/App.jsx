@@ -34,6 +34,15 @@ export default function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
   };
 
+  // complete
+  const makeItCompleted = (id) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
+  };
+
   return (
     <main className="container">
       <header>
@@ -60,6 +69,7 @@ export default function App() {
             key={todo.id + "" + Math.random()}
             {...todo}
             remove={() => deleteTodo(todo.id)}
+            setComplete={() => makeItCompleted(todo.id)}
           />
         ))}
 

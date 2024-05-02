@@ -1,11 +1,11 @@
 import React from "react";
 import { crossIcon } from "../assets/images";
 
-const Todo = ({ title, isCompleted, remove }) => {
+const Todo = ({ title, isCompleted, remove, setComplete }) => {
   return (
     <div className="todo">
       <div className={`todo-left ${isCompleted && "complete"}`}>
-        <div className="check-box"></div>
+        <div className="check-box" onClick={setComplete}></div>
         <input
           type="text"
           value={title}
