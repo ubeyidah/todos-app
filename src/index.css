@@ -3,15 +3,6 @@
   src: url(./assets/fonts/Roboto-Regular.ttf);
 }
 
-b {
-  --lue: hsl(235, 21%, 11%);
-  --lue: hsl(235, 24%, 19%);
-  --lue: hsl(234, 39%, 85%);
-  --Blue: hsl(236, 33%, 92%);
-  --Blue: hsl(234, 11%, 52%);
-  --Blue: hsl(237, 14%, 26%);
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -181,8 +172,7 @@ b {
 }
 
 .todo .todo-left input {
-  flex: 1;
-  width: 100%;
+  min-width: 340px;
   border: none;
   background: transparent;
   font-size: 1rem;
