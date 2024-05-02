@@ -28,7 +28,7 @@ b {
   min-height: 100vh;
   background: url(./assets/images/bg-desktop-light.jpg) no-repeat;
   background-size: contain;
-  background-position: top left;
+  background-position: top center;
 }
 
 .dark .content {
@@ -139,6 +139,10 @@ b {
   outline: none;
   border: none;
   background: transparent;
+}
+
+.dark .container .inputs input {
+  color: white;
 }
 
 .dark .container .inputs input::placeholder {
