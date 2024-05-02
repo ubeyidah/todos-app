@@ -57,6 +57,13 @@ export default function App() {
     );
   };
 
+  // clear completed todos
+  const clearCompleted = () => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => ({ ...todo, isCompleted: false }))
+    );
+  };
+
   return (
     <main className="container">
       <header>
@@ -94,7 +101,9 @@ export default function App() {
             <button className="link">Active</button>
             <button className="link">Completed</button>
           </div>
-          <button className="link">Clear Completed</button>
+          <button className="link" onClick={clearCompleted}>
+            Clear Completed
+          </button>
         </div>
       </section>
       <Footer />
