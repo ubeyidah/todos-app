@@ -143,6 +143,7 @@ body {
   border: none;
   background: transparent;
   font-size: 1rem;
+  outline: none;
 }
 .todo-left.complete input {
   text-decoration: line-through;
@@ -182,6 +183,7 @@ body {
   margin-left: 10px;
   cursor: pointer;
   transition: color 0.3s;
+  text-wrap: nowrap;
 }
 .todos-footer .link:not(.active):hover {
   color: black;

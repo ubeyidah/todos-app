@@ -93,6 +93,17 @@ export default function App() {
     });
   }, [todos]);
 
+  // update todos
+  const update = (id, value) => {
+    if (value) {
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo.id === id ? { ...todo, title: value } : todo
+        )
+      );
+    }
+  };
+
   return (
     <main className="container">
       <header>
@@ -120,6 +131,7 @@ export default function App() {
             {...todo}
             remove={() => deleteTodo(todo.id)}
             setComplete={() => makeItCompleted(todo.id)}
+            update={update}
           />
         ))}
 

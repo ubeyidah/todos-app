@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { crossIcon } from "../assets/images";
 
-const Todo = ({ title, isCompleted, remove, setComplete }) => {
+const Todo = ({ title, isCompleted, remove, setComplete, update, id }) => {
+  const [locked, setLocked] = useState(true);
+  const [label, setlabel] = useState(title);
+
+  const handleSubmit = (e) => {
+    if (e.key === "Enter") {
+      update(id, label);
+    }
+  };
   return (
     <div className="todo">
       <div className={`todo-left ${isCompleted && "complete"}`}>
         <div className="check-box" onClick={setComplete}></div>
         <input
           type="text"
-          value={title}
-          onChange={() => console.log("3")}
-          disabled={true}
+          value={locked ? title : label}
+          onChange={(e) => !locked && setlabel(e.target.value)}
+          onDoubleClick={() =>
+            !isCompleted && setLocked((prevLock) => !prevLock)
+          }
+          onKeyDown={handleSubmit}
         />
       </div>
       <button className="delete-btn center btn" onClick={remove}>
