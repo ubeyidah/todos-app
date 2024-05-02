@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { moonIcon } from "./assets/images";
 import "./index.css";
 import Todo from "./components/Todo";
 import Footer from "./components/Footer";
 
 export default function App() {
+  const [todos, setTodos] = useState(
+    () =>
+      JSON.parse(localStorage.getItem("todos")) || [
+        { id: "23452345swfa", title: "coding for the end", isCompleted: false },
+        { id: "asdfaar3r", title: "doing some thing", isCompleted: true },
+        { id: "asdfr3443", title: "math exam ", isCompleted: false },
+      ]
+  );
   return (
     <main className="container">
       <header>
@@ -20,31 +28,9 @@ export default function App() {
       </section>
 
       <section className="todos">
-        <Todo
-          title="Coding for 4 hours a day"
-          id="3ad3d3da3a"
-          isCompleted={false}
-        />
-        <Todo
-          title="Coding for 4 hours a day"
-          id="3ad3d3da3asda"
-          isCompleted={true}
-        />
-        <Todo
-          title="Coding for 4 hours a day"
-          id="3ad3d3da3asda"
-          isCompleted={0}
-        />
-        <Todo
-          title="Coding for 4 hours a day"
-          id="3ad3d3da3asda"
-          isCompleted={true}
-        />
-        <Todo
-          title="Coding for 4 hours a day"
-          id="3ad3d3da3asda"
-          isCompleted={true}
-        />
+        {todos.map((todo) => (
+          <Todo key={todo.id} {...todo} />
+        ))}
 
         <div className="todos-footer">
           <p className="todo-length">5 items left</p>
