@@ -6,21 +6,20 @@ import Footer from "./components/Footer";
 
 export default function App() {
   const [todos, setTodos] = useState(
-    () =>
-      JSON.parse(localStorage.getItem("todos")) || [
-        { id: "23452345swfa", title: "coding for the end", isCompleted: false },
-        { id: "asdfaar3r", title: "doing some thing", isCompleted: true },
-        { id: "asdfr3443", title: "math exam ", isCompleted: false },
-      ]
+    () => JSON.parse(localStorage.getItem("todos")) || []
   );
   const [todo, setTodo] = useState("");
 
+  // create new todo
   const addNewTodo = (title) => {
     const newTodo = { id: crypto.randomUUID(), title, isCompleted: false };
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
   };
+
+  // save todos
   localStorage.setItem("todos", JSON.stringify(todos));
 
+  // add todo
   const addTodo = (e) => {
     if (e.key === "Enter") {
       if (todo) {
@@ -28,6 +27,11 @@ export default function App() {
         setTodo("");
       }
     }
+  };
+
+  // delete todo
+  const deleteTodo = (id) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
   };
 
   return (
@@ -52,7 +56,11 @@ export default function App() {
 
       <section className="todos">
         {todos.map((todo) => (
-          <Todo key={todo.id} {...todo} />
+          <Todo
+            key={todo.id + "" + Math.random()}
+            {...todo}
+            remove={() => deleteTodo(todo.id)}
+          />
         ))}
 
         <div className="todos-footer">

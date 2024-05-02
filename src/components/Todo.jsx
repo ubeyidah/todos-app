@@ -1,14 +1,19 @@
 import React from "react";
 import { crossIcon } from "../assets/images";
 
-const Todo = ({ title, id, isCompleted }) => {
+const Todo = ({ title, isCompleted, remove }) => {
   return (
     <div className="todo">
       <div className={`todo-left ${isCompleted && "complete"}`}>
         <div className="check-box"></div>
-        <input type="text" value={title} disabled={true} />
+        <input
+          type="text"
+          value={title}
+          onChange={() => console.log("3")}
+          disabled={true}
+        />
       </div>
-      <button className="delete-btn center btn">
+      <button className="delete-btn center btn" onClick={remove}>
         <img src={crossIcon} alt="close icon" />
       </button>
     </div>
