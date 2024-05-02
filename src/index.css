@@ -36,7 +36,7 @@ body {
   letter-spacing: 0.7rem;
 }
 
-.container header button {
+.btn {
   border: none;
   background: transparent;
   cursor: pointer;
@@ -52,15 +52,15 @@ body {
   justify-content: center;
 }
 
-.container header button:hover {
+.btn:hover {
   background: #cccccc34;
 }
 
-.container header button:active {
+.btn:active {
   background: transparent;
 }
 
-.container header button img {
+.btn img {
   height: 20px;
   width: 20px;
 }
@@ -69,7 +69,7 @@ body {
 
 .container .inputs {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   background: #fff;
   padding: 16px;
   border-radius: 4px;
@@ -78,12 +78,31 @@ body {
   align-items: center;
 }
 
-.container .inputs .check-box {
+.check-box {
   width: 20px;
   height: 20px;
   border-radius: 20px;
   border: 1px solid #ccc;
   cursor: pointer;
+  transition: border-color 0.2s;
+}
+.check-box:hover {
+  border-color: gray;
+}
+.complete .check-box {
+  background: linear-gradient(120deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+  border: none;
+  position: relative;
+}
+.complete .check-box::after {
+  content: url(./assets/images/icon-check.svg);
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .container .inputs input {
@@ -92,4 +111,80 @@ body {
   padding: 5px;
   outline: none;
   border: none;
+}
+
+/* todos */
+
+.todos {
+  background: #fff;
+  margin-top: 30px;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.todos .todo {
+  display: flex;
+  border-bottom: 1px solid #cccc;
+  padding: 15px;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo .todo-left {
+  display: flex;
+  gap: 10px;
+}
+
+.todo .todo-left input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+}
+.todo-left.complete input {
+  text-decoration: line-through;
+  color: #84848497;
+}
+
+.delete-btn {
+  width: 26px;
+  height: 26px;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.delete-btn img {
+  width: 15px;
+  height: 15px;
+}
+
+.todo:hover .delete-btn {
+  opacity: 1;
+}
+
+.todos-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  color: hsl(236, 9%, 61%);
+  font-size: 0.9rem;
+}
+
+.todos-footer .link {
+  border: none;
+  background: transparent;
+  color: hsl(236, 9%, 61%);
+  font-size: 0.9rem;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.todos-footer .link:not(.active):hover {
+  color: black;
+}
+.todos-footer .active {
+  color: rgb(4, 159, 255);
 }
