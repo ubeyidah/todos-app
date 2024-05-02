@@ -9,6 +9,8 @@ export default function App() {
     () => JSON.parse(localStorage.getItem("todos")) || []
   );
   const [todo, setTodo] = useState("");
+  const [filtered, setFiltered] = useState(todos);
+  const [currentLink, setCurrentLink] = useState("all");
   const [completed, setCompleted] = useState(
     todos.every((todo) => todo.isCompleted)
   );
@@ -63,6 +65,33 @@ export default function App() {
       prevTodos.map((todo) => ({ ...todo, isCompleted: false }))
     );
   };
+  // filter data
+  const handleClick = (e) => {
+    const { value } = e.target;
+    setCurrentLink(value);
+    setFiltered(() => {
+      if (value === "all") {
+        return todos;
+      } else if (value === "active") {
+        return todos.filter((todo) => !todo.isCompleted);
+      } else if (value === "completed") {
+        return todos.filter((todo) => todo.isCompleted);
+      }
+    });
+  };
+
+  // sync filtered data with main
+  useEffect(() => {
+    setFiltered(() => {
+      if (currentLink === "all") {
+        return todos;
+      } else if (currentLink === "active") {
+        return todos.filter((todo) => !todo.isCompleted);
+      } else if (currentLink === "completed") {
+        return todos.filter((todo) => todo.isCompleted);
+      }
+    });
+  }, [todos]);
 
   return (
     <main className="container">
@@ -85,7 +114,7 @@ export default function App() {
       </section>
 
       <section className="todos">
-        {todos.map((todo) => (
+        {filtered.map((todo) => (
           <Todo
             key={todo.id + "" + Math.random()}
             {...todo}
@@ -95,11 +124,32 @@ export default function App() {
         ))}
 
         <div className="todos-footer">
-          <p className="todo-length">5 items left</p>
+          <p className="todo-length">
+            {todos.filter((todo) => !todo.isCompleted).length} item
+            {todos.filter((todo) => !todo.isCompleted).length > 1 && "s"} left
+          </p>
           <div className="links">
-            <button className="link active">All</button>
-            <button className="link">Active</button>
-            <button className="link">Completed</button>
+            <button
+              value="all"
+              className={`link ${currentLink === "all" && "active"}`}
+              onClick={handleClick}
+            >
+              All
+            </button>
+            <button
+              value="active"
+              className={`link ${currentLink === "active" && "active"}`}
+              onClick={handleClick}
+            >
+              Active
+            </button>
+            <button
+              value="completed"
+              className={`link ${currentLink === "completed" && "active"}`}
+              onClick={handleClick}
+            >
+              Completed
+            </button>
           </div>
           <button className="link" onClick={clearCompleted}>
             Clear Completed
