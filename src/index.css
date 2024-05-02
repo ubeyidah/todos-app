@@ -38,8 +38,8 @@ b {
   max-width: 500px;
   margin: 0 auto;
   padding-top: 60px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .container header {
@@ -106,6 +106,7 @@ b {
   border: 1px solid #ccc;
   cursor: pointer;
   transition: border-color 0.2s;
+  background: transparent;
 }
 
 .dark .check-box {
@@ -252,6 +253,17 @@ b {
 .todos-footer .link.active {
   color: rgb(4, 159, 255);
 }
+/* empty */
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  font-size: 20px;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  color: gray;
+}
 
 /* footer */
 footer {
@@ -276,10 +288,17 @@ footer {
     flex-direction: column;
     gap: 15px;
   }
+
+  .container {
+    padding-top: 40px;
+  }
 }
 
 @media (max-width: 470px) and (min-width: 370px) {
   .container header .title {
     color: black;
+  }
+  .dark .container header .title {
+    color: white;
   }
 }

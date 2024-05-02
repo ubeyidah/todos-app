@@ -13,7 +13,7 @@ const Todo = ({ title, isCompleted, remove, setComplete, update, id }) => {
   return (
     <div className="todo">
       <div className={`todo-left ${isCompleted && "complete"}`}>
-        <div className="check-box" onClick={setComplete}></div>
+        <button className="check-box" onClick={setComplete}></button>
         <input
           type="text"
           value={locked ? title : label}

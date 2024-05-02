@@ -119,8 +119,10 @@ export default function App() {
             </button>
           </header>
 
-          <section className={`inputs ${completed && "complete"}`}>
-            <div className="check-box" onClick={flipAllComplete}></div>
+          <section
+            className={`inputs ${completed && todos.length > 0 && "complete"}`}
+          >
+            <button className="check-box" onClick={flipAllComplete}></button>
             <input
               type="text"
               placeholder="Create a new todo..."
@@ -131,6 +133,13 @@ export default function App() {
           </section>
 
           <section className="todos">
+            {filtered.length <= 0 && (
+              <div className="empty">
+                {currentLink === "all"
+                  ? "empty"
+                  : `You don't have ${currentLink} todo`}
+              </div>
+            )}
             {filtered.map((todo) => (
               <Todo
                 key={todo.id + "" + Math.random()}
