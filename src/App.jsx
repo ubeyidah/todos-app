@@ -2,6 +2,7 @@ import React from "react";
 import { moonIcon } from "./assets/images";
 import "./index.css";
 import Todo from "./components/Todo";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -55,6 +56,7 @@ export default function App() {
           <button className="link">Clear Completed</button>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
