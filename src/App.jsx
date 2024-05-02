@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { moonIcon } from "./assets/images";
+import { moonIcon, sunIcon } from "./assets/images";
 import "./index.css";
 import Todo from "./components/Todo";
 import Footer from "./components/Footer";
@@ -14,6 +14,7 @@ export default function App() {
   const [completed, setCompleted] = useState(
     todos.every((todo) => todo.isCompleted)
   );
+  const [isDark, setIsDark] = useState(false);
 
   //sync completed when tods change
   useEffect(() => {
@@ -105,70 +106,79 @@ export default function App() {
   };
 
   return (
-    <main className="container">
-      <header>
-        <h1 className="title">TODO</h1>
-        <button className="center btn">
-          <img src={moonIcon} alt="theme icon" />
-        </button>
-      </header>
-
-      <section className={`inputs ${completed && "complete"}`}>
-        <div className="check-box" onClick={flipAllComplete}></div>
-        <input
-          type="text"
-          placeholder="Create a new todo..."
-          onChange={(e) => setTodo(e.target.value)}
-          onKeyDown={addTodo}
-          value={todo}
-        />
-      </section>
-
-      <section className="todos">
-        {filtered.map((todo) => (
-          <Todo
-            key={todo.id + "" + Math.random()}
-            {...todo}
-            remove={() => deleteTodo(todo.id)}
-            setComplete={() => makeItCompleted(todo.id)}
-            update={update}
-          />
-        ))}
-
-        <div className="todos-footer">
-          <p className="todo-length">
-            {todos.filter((todo) => !todo.isCompleted).length} item
-            {todos.filter((todo) => !todo.isCompleted).length > 1 && "s"} left
-          </p>
-          <div className="links">
+    <div className={`app ${isDark && "dark"}`}>
+      <main className="content">
+        <div className="container">
+          <header>
+            <h1 className="title">TODO</h1>
             <button
-              value="all"
-              className={`link ${currentLink === "all" && "active"}`}
-              onClick={handleClick}
+              className="center btn"
+              onClick={() => setIsDark((prevMode) => !prevMode)}
             >
-              All
+              <img src={isDark ? sunIcon : moonIcon} alt="theme icon" />
             </button>
-            <button
-              value="active"
-              className={`link ${currentLink === "active" && "active"}`}
-              onClick={handleClick}
-            >
-              Active
-            </button>
-            <button
-              value="completed"
-              className={`link ${currentLink === "completed" && "active"}`}
-              onClick={handleClick}
-            >
-              Completed
-            </button>
-          </div>
-          <button className="link" onClick={clearCompleted}>
-            Clear Completed
-          </button>
+          </header>
+
+          <section className={`inputs ${completed && "complete"}`}>
+            <div className="check-box" onClick={flipAllComplete}></div>
+            <input
+              type="text"
+              placeholder="Create a new todo..."
+              onChange={(e) => setTodo(e.target.value)}
+              onKeyDown={addTodo}
+              value={todo}
+            />
+          </section>
+
+          <section className="todos">
+            {filtered.map((todo) => (
+              <Todo
+                key={todo.id + "" + Math.random()}
+                {...todo}
+                remove={() => deleteTodo(todo.id)}
+                setComplete={() => makeItCompleted(todo.id)}
+                update={update}
+              />
+            ))}
+
+            <div className="todos-footer">
+              <p className="todo-length">
+                {todos.filter((todo) => !todo.isCompleted).length} item
+                {todos.filter((todo) => !todo.isCompleted).length > 1 &&
+                  "s"}{" "}
+                left
+              </p>
+              <div className="links">
+                <button
+                  value="all"
+                  className={`link ${currentLink === "all" && "active"}`}
+                  onClick={handleClick}
+                >
+                  All
+                </button>
+                <button
+                  value="active"
+                  className={`link ${currentLink === "active" && "active"}`}
+                  onClick={handleClick}
+                >
+                  Active
+                </button>
+                <button
+                  value="completed"
+                  className={`link ${currentLink === "completed" && "active"}`}
+                  onClick={handleClick}
+                >
+                  Completed
+                </button>
+              </div>
+              <button className="link" onClick={clearCompleted}>
+                Clear Completed
+              </button>
+            </div>
+          </section>
+          <Footer />
         </div>
-      </section>
-      <Footer />
-    </main>
+      </main>
+    </div>
   );
 }

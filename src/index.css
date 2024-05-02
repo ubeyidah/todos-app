@@ -3,20 +3,37 @@
   src: url(./assets/fonts/Roboto-Regular.ttf);
 }
 
+b {
+  --lue: hsl(235, 21%, 11%);
+  --lue: hsl(235, 24%, 19%);
+  --lue: hsl(234, 39%, 85%);
+  --Blue: hsl(236, 33%, 92%);
+  --Blue: hsl(234, 11%, 52%);
+  --Blue: hsl(237, 14%, 26%);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Roboto;
 }
-
-body {
+.app {
+  background: white;
+}
+.dark.app {
+  background: hsl(235, 21%, 11%);
+}
+.content {
   min-height: 100vh;
   background: url(./assets/images/bg-desktop-light.jpg) no-repeat;
   background-size: contain;
   background-position: top left;
 }
 
+.dark .content {
+  background: url(./assets/images/bg-desktop-dark.jpg) no-repeat;
+}
 .container {
   max-width: 500px;
   margin: 0 auto;
@@ -78,6 +95,10 @@ body {
   align-items: center;
 }
 
+.dark .container .inputs {
+  background: hsl(235, 24%, 19%);
+}
+
 .check-box {
   width: 20px;
   height: 20px;
@@ -86,15 +107,21 @@ body {
   cursor: pointer;
   transition: border-color 0.2s;
 }
+
+.dark .check-box {
+  border-color: hsl(234, 11%, 52%);
+}
+
 .check-box:hover {
   border-color: gray;
 }
+
 .complete .check-box {
   background: linear-gradient(120deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-
   border: none;
   position: relative;
 }
+
 .complete .check-box::after {
   content: url(./assets/images/icon-check.svg);
   background-position: center;
@@ -114,6 +141,10 @@ body {
   background: transparent;
 }
 
+.dark .container .inputs input::placeholder {
+  color: hsl(234, 11%, 52%);
+}
+
 /* todos */
 
 .todos {
@@ -121,6 +152,9 @@ body {
   margin-top: 30px;
   box-shadow: 4px 4px 20px 1px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
+}
+.dark .todos {
+  background: hsl(235, 24%, 19%);
 }
 
 .todos .todo {
@@ -130,6 +164,10 @@ body {
   gap: 12px;
   align-items: center;
   justify-content: space-between;
+}
+
+.dark .todos .todo {
+  border-bottom-color: hsla(234, 8%, 46%, 0.381);
 }
 
 .todo .todo-left {
@@ -145,9 +183,18 @@ body {
   font-size: 1rem;
   outline: none;
 }
+
+.dark .todo .todo-left input {
+  color: hsl(234, 39%, 85%);
+}
+
 .todo-left.complete input {
   text-decoration: line-through;
   color: #84848497;
+}
+
+.dark .todo-left.complete input {
+  color: hsl(234, 11%, 52%);
 }
 
 .delete-btn {
@@ -178,17 +225,27 @@ body {
 .todos-footer .link {
   border: none;
   background: transparent;
-  color: hsl(236, 9%, 61%);
+  color: hsl(234, 11%, 52%);
   font-size: 0.9rem;
   margin-left: 10px;
   cursor: pointer;
   transition: color 0.3s;
   text-wrap: nowrap;
 }
+
+.dark .todos-footer .link {
+  color: hsl(234, 11%, 52%);
+}
+
 .todos-footer .link:not(.active):hover {
   color: black;
 }
-.todos-footer .active {
+
+.dark .todos-footer .link:not(.active):hover {
+  color: white;
+}
+
+.todos-footer .link.active {
   color: rgb(4, 159, 255);
 }
 
