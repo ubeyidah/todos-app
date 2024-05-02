@@ -257,3 +257,25 @@ footer {
   font-size: 0.9rem;
   margin-bottom: 50px;
 }
+
+/* responsive  */
+@media (max-width: 373px) {
+  .content {
+    background: url(./assets/images/bg-mobile-light.jpg) no-repeat;
+  }
+
+  .dark .content {
+    background: url(./assets/images/bg-mobile-dark.jpg) no-repeat;
+  }
+
+  .todos-footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 470px) and (min-width: 370px) {
+  .container header .title {
+    color: black;
+  }
+}
