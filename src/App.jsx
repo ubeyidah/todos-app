@@ -13,6 +13,23 @@ export default function App() {
         { id: "asdfr3443", title: "math exam ", isCompleted: false },
       ]
   );
+  const [todo, setTodo] = useState("");
+
+  const addNewTodo = (title) => {
+    const newTodo = { id: crypto.randomUUID(), title, isCompleted: false };
+    setTodos((prevTodos) => [newTodo, ...prevTodos]);
+  };
+  localStorage.setItem("todos", JSON.stringify(todos));
+
+  const addTodo = (e) => {
+    if (e.key === "Enter") {
+      if (todo) {
+        addNewTodo(todo);
+        setTodo("");
+      }
+    }
+  };
+
   return (
     <main className="container">
       <header>
@@ -24,7 +41,13 @@ export default function App() {
 
       <section className="inputs">
         <div className="check-box"></div>
-        <input type="text" placeholder="Create a new todo..." />
+        <input
+          type="text"
+          placeholder="Create a new todo..."
+          onChange={(e) => setTodo(e.target.value)}
+          onKeyDown={addTodo}
+          value={todo}
+        />
       </section>
 
       <section className="todos">
