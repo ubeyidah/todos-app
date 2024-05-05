@@ -261,7 +261,7 @@ footer {
   margin-top: 30px;
   color: hsl(236, 9%, 61%);
   font-size: 0.9rem;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
 }
 
 /* responsive  */
